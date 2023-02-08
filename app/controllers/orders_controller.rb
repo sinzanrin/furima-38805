@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
       redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
       if @order_form.valid?
         pay_item
-        # @order_form.save
+        @order_form.save
         redirect_to root_path
       else
         render :index
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
     end  
     
     def pay_item
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+      Payjp.api_key = ENV['PAYJP_SECRET_KEY']  # 自身のPAY.JPテスト秘密鍵を記述しましょう
       Payjp::Charge.create(
         amount: @item.price,  # 商品の値段
         card: order_params[:token],    # カードトークン

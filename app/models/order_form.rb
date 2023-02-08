@@ -11,12 +11,12 @@ class OrderForm
         validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
         validates :city
         validates :address
-        validates :phone_numder, format: { with: /\A[0-9]{11}\z/, message: '無効です' }
+        validates :phone_numder, format: { with: /\A[0-9]{10,11}\z/, message: '無効です' }
         validates :token
     end
 
     def save
         order = Order.create(user_id: user_id, item_id: item_id)
-        # Payment.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_numder: phone_numder)
+        Address.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_numder: phone_numder)
     end
 end

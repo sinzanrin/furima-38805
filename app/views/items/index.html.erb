@@ -133,7 +133,6 @@
         <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" if item.image.attached? %>
-
           <% if item.order.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>

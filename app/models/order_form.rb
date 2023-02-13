@@ -7,11 +7,11 @@ class OrderForm
         validates :user_id
         validates :item_id
         # addressモデルのバリデーション
-        validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'ハイフンを含めてください' }
-        validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
+        validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
+        validates :prefecture_id, numericality: { other_than: 0 }
         validates :city
         validates :address
-        validates :phone_numder, format: { with: /\A[0-9]{10,11}\z/, message: '無効です' }
+        validates :phone_numder, format: { with: /\A[0-9]{10,11}\z/}
         validates :token
     end
 
